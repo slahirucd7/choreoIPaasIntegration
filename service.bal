@@ -1,17 +1,16 @@
 import ballerina/http;
 
+// Define configurable variables, including the HR endpoint
 configurable string hrEndpoint = ?;
 
 type Request record {|
-int[] employeeIds;
+    int[] employeeIds;
 |};
 
 type Employees record {|
-json[] employeeDetails;
+    json[] employeeDetails;
 |};
 
-# A service representing a network-accessible API
-# bound to port `9090`.
 service / on new http:Listener(9090) {
     // Define your resource functions here
     resource function post employees(@http:Payload Request payload) returns Employees|error? {
